@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SEEK!</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="style.css">
+ </head>
+    <body>
+<p class="navbar-text navbar-right"><h1>See the Most famous places in Riyadh!</h1></p>
+<div id="wrapper">
+    
+
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+
+<div id ="menu" > 
+<h1 id="header">List of places</h1>
+<li> Riyadh Gallery Mall</li>
+<li> Panorama Mall </li>
+<li>Kingdome Hospital  </li>
+<li>King Fahad Medical Hospital <li>
+<li> Off-wite resturant </li>
+
+<form class = "search">
+    <input class ="input" data-bind = "value: query, valueUpdate: 'keyup'" id="filter" type="text" placeholder="Search from the list" >
+    <button> Filter </button>
+</form>
+<div data-bind= "foreach: filteredPlaces" class = "list"> 
+    <li class = "name" data-bind = "text:name, click: $parent.setMarker,$parent.toggleBounce"> </li>
+</div>
+</div>
+  </li>
+</ul>
+</div>
+</div>
+    
+         <div id = "map"></div>
+    </div>
+         
+
+
+   <script src="knockout-3.4.2.js"></script>
+    <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script  async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-PiiNWD2s-hAxximVjXU_jRhHEFgDz-0&callback=initMap" onerror="mapAPTError()"
+    ></script>
+  </body>
+</html>
