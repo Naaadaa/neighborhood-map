@@ -1,0 +1,200 @@
+
+
+// My places informations 
+
+var model = [{
+    name: 'Riyadh Gallery',
+    category: 'Mall',
+    location: { lat:24.743661,lng:46.657835 }
+  },
+
+  {
+    name: 'panorama Mall',
+    category: 'Mall',
+    location: {lat:24.692826, lng:46.669914 }
+
+  },
+  {
+    name: 'Kingdome hospital',
+    category: 'hospital',
+    location: { lat:24.801187, lng:46.654272}
+  },
+
+  {
+    name: 'King Fahad Medical Hopspital',
+    category: 'hospital',
+    location: {lat:24.686928, lng:46.705381 }
+ },
+
+   {
+    name: 'off-white',
+    category: 'Restaurant',
+    location: {lat:24.775677, lng:46.665903}
+  }
+
+];
+
+
+var infoWindow;
+var map;
+var marker;
+
+/* Initialize Google Map */
+
+function initMap() {
+    var options = {lat:24.713552, lng:46.675296};
+  
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: options
+  });
+
+  for (var i = 0; i < model.length; i++) {
+    var Position = model[i].location;
+    var name = model[i].name;
+    var category = model[i].category;
+
+
+    marker = new google.maps.Marker({
+      position: Position,
+      map: map,
+      title: name,
+      animation: google.maps.Animation.DROP,
+
+    });
+
+    infowindow = new google.maps.InfoWindow({
+    maxwidth: 250
+  });
+
+    // show details info about location when user clicks on a marker
+    google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(category.name);
+    infowindow.open(map, this);
+  });
+
+  }
+
+
+
+
+
+    // Foursquare API request
+
+
+ 
+
+ function populateInfoWindow(marker, infowindow) {
+
+    var foursqUrl = "https://api.foursquare.com" + marker.name + "&client_id=ESSJQX2SZUMYCN12PMB2JT3V0DEJQZTAMR1UC2Q5EUVJRCZH&client_secret=VAFUWQB4IDLRWFTYRBCWBGLW0SXR5CHY54PGQFMHCIB0SGOB";
+// AJAX call to Foursquare
+    $.ajax({
+      url: foursqUrl,
+      type: 'GET',
+      dataType: 'json',
+    }).done(function(data) {
+      console.log(data);
+
+      var informationUrl = data[3][0];
+      var Description = data[2][0];
+
+      // Error handling..
+      if (infoUrl === undefined) {
+        infowindow.setContent('<div>' + '<h4>' + marker.title + '</h4>' + '<p>' + 'Sorry not found.' + '</p>' + '</div>');
+        infowindow.open(map, marker);
+
+      } else {
+
+        infowindow.marker = marker;
+        infowindow.setContent('<div>' + '<h4>' + marker.name + '</h4>' + Description + '<a href="' + informationUrl + '</div>');
+        infowindow.open(map, marker);
+      }
+
+    }).fail(function() {
+      infowindow.setContent('<div>' + '<h4>' + marker.name + '</h4>' + '<p>' + 'Sorry couldnot found.' + '</p>' + '</div>');
+      infowindow.open(map, marker);
+
+    });
+  }
+
+}
+
+//######################MyViewModel################################//
+
+var MyViewModel = function() {
+
+  var self = this;
+
+
+  var models = function(data) {
+
+    self.name = ko.observable(data.name);
+    self.location = ko.observable(data.location);
+    self.isVisible = ko.observable(true);
+
+  };
+  this.locationList = ko.observableArray(model);
+
+  this.locationList().forEach(function(location) {
+    location.isVisible = ko.observable(true);
+
+  });
+
+    this.foursquareApi = function() {   
+
+
+
+    locations.forEach(function(location) {
+        self.locationList.push(new Location(location));
+    });
+
+
+        self.markers().push(marker);
+
+        marker.addListener('click', function() {
+            populateInfoWindow(this, largeInfoWindow);
+          });
+         marker.addListener('click', function() {
+           toggleBounce(this);
+          });
+        self.locationList()[i].marker = marker; 
+
+
+};
+
+
+
+
+
+     self.filteredPlaces = ko.computed(function () {
+    return ko.utils.arrayFilter(self.locationList(), function (rec) {
+            if ( self.query().length === 0 || rec.name.toLowerCase().indexOf(self.query().toLowerCase()) > -1) {
+                    rec.marker.setVisible(true);
+                    return true; 
+                    } else {
+                    rec.marker.setVisible(false);
+                    return false;
+                    }
+                });
+            });
+
+    self.setMarker = function(data) {
+         self.locationList().forEach(function (location){
+              location.marker.setVisible(false);    
+            }); 
+
+            data.marker.setVisible(true);
+
+             data.marker.setAnimation(google.maps.Animation.BOUNCE);
+              setTimeout (function () {
+                     data.marker.setAnimation(null);
+            }, 2000); 
+            map.setCenter(data.marker.position);
+  };
+};
+
+// Apply KO bindings
+var vm = new MyViewModel();
+
+ko.applyBindings(vm);
+
