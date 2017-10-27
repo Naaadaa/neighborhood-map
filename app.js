@@ -59,7 +59,7 @@ function initMap() {
     lng: 46.675296
   };
 
-  var map = new google.maps.Map(document.getElementById('map'), {
+   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: options
   });
