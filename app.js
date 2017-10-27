@@ -87,7 +87,7 @@ function initMap() {
     });
 
     // show details info about location when user clicks on a marker
-    google.maps.event.addListener(marker, populateInfoWindow);
+   google.maps.event.addListener(marker, 'click', populateInfoWindow);
 
   }
 
@@ -101,8 +101,9 @@ function initMap() {
 
 
   function populateInfoWindow() {
+         var marker = this;
     var query = marker.title;
-       var marker = this;
+    
 
     var ll = marker.position.lat() + ',' + marker.position.lng();
 
