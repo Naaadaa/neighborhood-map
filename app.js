@@ -64,8 +64,6 @@ function initMap() {
     center: options
   });
 
-
-
   for (var i = 0; i < model.length; i++) {
     var Position = model[i].location;
     var name = model[i].name;
@@ -87,10 +85,9 @@ function initMap() {
     });
 
     // show details info about location when user clicks on a marker
-   google.maps.event.addListener(marker, 'click', populateInfoWindow);
+  google.maps.event.addListener(marker, 'click', populateInfoWindow);
 
   }
-
 
 
 
@@ -101,9 +98,8 @@ function initMap() {
 
 
   function populateInfoWindow() {
-         var marker = this;
+    var marker = this;
     var query = marker.title;
-    
 
     var ll = marker.position.lat() + ',' + marker.position.lng();
 
@@ -206,7 +202,13 @@ var MyViewModel = function() {
   };
 };
 
+
+
 // Apply KO bindings
 var vm = new MyViewModel();
 
 ko.applyBindings(vm);
+
+function errorHandling() {
+  alert("Google Maps has failed to load. Please check your internet connection and try again.");
+}
