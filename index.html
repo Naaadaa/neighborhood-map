@@ -5,44 +5,49 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
  </head>
     <body>
-<p class="navbar-text navbar-right"><h1>See the Most famous places in Riyadh!</h1></p>
+<p class="navbar-text navbar-right"><h1>See the Most famous places in Riyadh!</h1>
 <div id="wrapper">
     
-
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-
-<div id ="menu" > 
-<h1 id="header">List of places</h1>
-
-
-<form class = "search">
-    <input class ="input" data-bind = "value: query, valueUpdate: 'keyup'" id="filter" type="text" placeholder="Search from the list" >
-    <button> Filter </button>
-</form>
-<div data-bind= "foreach: filteredPlaces" class = "list"> 
-    <li class = "name" data-bind = "text:name, click: $parent.setMarker,$parent.toggleBounce"> </li>
-</div>
-</div>
-  </li>
-</ul>
-</div>
-</div>
+<div class="container">
+   <div class="row">
+     <div class="col-xs-2">
     
-         <div id = "map"></div>
-    </div>
+       <div id="sidebar-wrapper">
+           <ol class="sidebar-nav">
+              <li class="sidebar-brand">
+
+                    <div id ="menu" > 
+                        <li > search : </li> 
+                        <form class = "search">
+                         <input class ="input" data-bind = "value: query, valueUpdate: 'keyup'" id="filter" type="text" placeholder="Search from the list" >
+                         <button> Filter </button>
+                        </form>
+
+                        <div data-bind= "foreach: filteredPlaces" class = "list"> 
+                          <li class = "name" data-bind = "text:name, click: $parent.setMarker,$parent.toggleBounce"> </li>
+                    </div>
+              </ol>
+        </div>
+   </div>
+ 
+                    <div class="col-xs-10">
+
+                       <div id = "map" ></div>
+                    </div>
          
+     </div>
+  </div>
+</div>
 
 
-   <script src="knockout-3.4.2.js"></script>
-    <script src="app.js"></script>
+   <script src="lib/knockout-3.4.2.js"></script>
+    <script src="js/app.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script  async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-PiiNWD2s-hAxximVjXU_jRhHEFgDz-0&callback=initMap" onerror="mapAPTError()"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-PiiNWD2s-hAxximVjXU_jRhHEFgDz-0&callback=initMap" onerror="errorHandling()"
     ></script>
   </body>
 </html>
