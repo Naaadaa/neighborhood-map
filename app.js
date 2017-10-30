@@ -59,7 +59,7 @@ function initMap() {
     lng: 46.675296
   };
 
-   map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: options
   });
@@ -85,7 +85,7 @@ function initMap() {
     });
 
     // show details info about location when user clicks on a marker
-  google.maps.event.addListener(marker, 'click', populateInfoWindow);
+    google.maps.event.addListener(marker, 'click', populateInfoWindow);
 
   }
 
@@ -200,9 +200,8 @@ var MyViewModel = function() {
     }, 2000);
     map.setCenter(data.marker.position);
   };
+  
 };
-
-
 
 // Apply KO bindings
 var vm = new MyViewModel();
