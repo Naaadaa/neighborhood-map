@@ -85,8 +85,8 @@ function initMap() {
     });
 
     // show details info about location when user clicks on a marker
-    google.maps.event.addListener(marker, 'click', populateInfoWindow);
-
+ google.maps.event.addListener(marker, 'click', populateInfoWindow);
+ 
   }
 
 
@@ -98,7 +98,7 @@ function initMap() {
 
 
   function populateInfoWindow() {
-    var marker = this;
+    var marker =this;
     var query = marker.title;
 
     var ll = marker.position.lat() + ',' + marker.position.lng();
@@ -198,9 +198,12 @@ var MyViewModel = function() {
     setTimeout(function() {
       data.marker.setAnimation(null);
     }, 2000);
-    map.setCenter(data.marker.position);
+
   };
-  
+
+  showInfo=function(location){
+        google.maps.event.trigger(location.marker,'click');
+      };
 };
 
 // Apply KO bindings
