@@ -201,9 +201,9 @@ var MyViewModel = function() {
 
   };
 
-  showInfo=function(location){
-        google.maps.event.trigger(location.marker,'click');
-      };
+ self.showInfo =  function(location){
+    google.maps.event.trigger(location.marker,'click');
+  };
 };
 
 // Apply KO bindings
