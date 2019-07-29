@@ -1,11 +1,11 @@
-#Map project Application 
+# Map project Application 
 
  
-##Project Overview 
+## Project Overview 
 
 This Web App is an interactive Google Map of Riyadh with various places marked all around the map.
 
-####summry
+## summry
 Simple page web app running AJAX requests, Google Maps API,
 
 Javascript framework : [Knockout](http://knockoutjs.com/)</br>
@@ -15,7 +15,7 @@ Layout is handled via [Bootstrap](http://getbootstrap.com/)
 [Click here](https://mikaeljan.github.io/Neighborhood-Map-Project/). 
 
 
-#Execution
+# Execution
 After downloading the repo's contents, open index.html in any browser of your choice (Chrome recommended).
 
 
