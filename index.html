@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,12 +28,14 @@
                         </form>
 
                         <div data-bind= "foreach: filteredPlaces" class = "list"> 
-                          <li class = "name" data-bind = "text:name, click: $parent.setMarker,$parent.toggleBounce"> </li>
+                            <li class = "name" data-bind = "text:name, click: $parent.showInfo"> </li>
+
                     </div>
               </ol>
         </div>
    </div>
  
+
                     <div class="col-xs-10">
 
                        <div id = "map" ></div>
