@@ -12,7 +12,7 @@ Javascript framework : [Knockout](http://knockoutjs.com/)</br>
 Layout is handled via [Bootstrap](http://getbootstrap.com/)
 
 ## For a live demo:
-[Click here](https://mikaeljan.github.io/Neighborhood-Map-Project/). 
+[Click here](https://naaadaa.github.io/neighborhood-map/). 
 
 
 # Execution
